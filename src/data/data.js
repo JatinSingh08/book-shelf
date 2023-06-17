@@ -65,6 +65,6 @@ export const books = [
     image:
       'https://m.media-amazon.com/images/I/71Q1tPupKjL.jpg',
     price: 6.99,
-    category: 'none'
+    category: 'continueReading'
   },
 ]

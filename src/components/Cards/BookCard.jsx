@@ -3,18 +3,19 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import { BooksContext } from '../../context/books-context';
 
 const BookCard = ({ book }) => {
-  const { id, title, publisher, author, year, image } = book;
+  const { id, title, publisher, author, year, image, category } = book;
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { state, dispatch, handleBookStatus } = useContext(BooksContext);
 
 
   
   return (
-    <div className='border-black w-56 m-auto mt-10 text-start header hover:scale-105 transition-all transform duration-700 hover:cursor-pointer relative'>
+    <div className='border-black w-56 mt-10 text-start header hover:scale-105 transition-all transform duration-700 hover:cursor-pointer relative'>
       <img src={image} alt="" className='h-80 object-fill w-full' />
       <div className='p-2'>
         <h2 className='font-semibold text-lg mt-4'>{title}</h2>
         <p>{author}</p>
+        <p className='underline'>{category}</p>
       </div>
     
       <div
@@ -29,6 +30,7 @@ const BookCard = ({ book }) => {
           className='absolute -bottom-5 left-0 -ml-1 -mb-2 bg-white border border-gray-300 rounded px-2 py-1'
           id={id}
           onChange={(e) => handleBookStatus(id, e.target.value)}
+          value={category}
         >
           <option value='continueReading'
           >Continue reading</option>
