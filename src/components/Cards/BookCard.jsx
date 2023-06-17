@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
 import { BooksContext } from '../../context/books-context';
-import { ActionType } from '../../reducers/constants';
 
 const BookCard = ({ book }) => {
   const { id, title, publisher, author, year, image } = book;
@@ -29,7 +28,7 @@ const BookCard = ({ book }) => {
         <select
           className='absolute -bottom-5 left-0 -ml-1 -mb-2 bg-white border border-gray-300 rounded px-2 py-1'
           id={id}
-          onChange={handleBookStatus}
+          onChange={(e) => handleBookStatus(id, e.target.value)}
         >
           <option value='continueReading'
           >Continue reading</option>
