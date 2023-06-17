@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { AiFillHome } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
+import { BooksContext } from '../../context/books-context';
 const Header = () => {
   const navigate = useNavigate();
+  const { handleSearch } = useContext(BooksContext);
+
+  const searchInputHandler = (e) => {
+    if(e.target.value.trim().length > 0) {
+      navigate('/search');
+      handleSearch(e.target.value);
+    }
+  }
   return (
     <div className=' flex items-center justify-between p-5 m-auto gap-20 border-b header'>
       <div onClick={() => navigate('/')}>
@@ -29,7 +38,7 @@ const Header = () => {
                       placeholder="Search Books"
                       className="w-full py-2 pl-12 pr-4 border-none rounded-md outline-none bg-red-200"
                       name="searchValue"
-                      onChange={(e) => e.target.value.trim().length > 0 && navigate('/search')}
+                      onChange={searchInputHandler}
               />
 
             </div>

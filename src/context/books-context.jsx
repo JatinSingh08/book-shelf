@@ -11,13 +11,18 @@ const BooksProvider = ({children}) => {
     dispatch({ type: ActionType.CHANGE_CATEGORY, payload: { id: bookId, category: categoryValue }})
   };
 
+  const handleSearch = (value) => {
+    dispatch({ type: ActionType.SET_SEARCH_VALUE, payload: value})
+  }
+
   console.log(state.books);
   return (
     <BooksContext.Provider 
     value={{ 
       state, 
       dispatch,
-      handleBookStatus
+      handleBookStatus,
+      handleSearch
     }}>
       {children}
     </BooksContext.Provider>
