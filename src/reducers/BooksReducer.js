@@ -1,16 +1,17 @@
+import { books } from "../data/data";
+import { ActionType } from "./constants";
 
-export const initialSate = {
-  continueReading: [],
-  read: [],
-  wantToRead: []
+export const initialState = {
+  books: books
 }
-export const BooksReducer = () => {
-  switch (key) {
-    case value:
-      
-      break;
-  
+export const BooksReducer = (state, action) => {
+  switch (action.type) {
+    case ActionType.CHANGE_CATEGORY: 
+       return {
+        ...state,
+        books: books.map((book) => book.id === action.payload.id ? ({...book, category: action.payload.category}) : book)
+       }
     default:
-      break;
+      return state;
   }
 }

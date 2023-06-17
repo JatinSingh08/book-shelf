@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
+import { BooksContext } from '../../context/books-context';
+import { ActionType } from '../../reducers/constants';
 
 const BookCard = ({ book }) => {
-  const { title, publisher, author, year, image } = book;
+  const { id, title, publisher, author, year, image } = book;
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('');
+  const { state, dispatch, handleBookStatus } = useContext(BooksContext);
 
-  console.log(book);
 
-  const handleOptionChange = (e) => {
-    setSelectedOption(e.target.value);
-  };
-
+  
   return (
     <div className='border-black w-56 m-auto mt-10 text-start header hover:scale-105 transition-all transform duration-700 hover:cursor-pointer relative'>
       <img src={image} alt="" className='h-80 object-fill w-full' />
@@ -30,10 +28,11 @@ const BookCard = ({ book }) => {
       {dropdownOpen && (
         <select
           className='absolute -bottom-5 left-0 -ml-1 -mb-2 bg-white border border-gray-300 rounded px-2 py-1'
-          value={selectedOption}
-          onChange={handleOptionChange}
+          id={id}
+          onChange={handleBookStatus}
         >
-          <option value='continue reading'>Continue reading</option>
+          <option value='continueReading'
+          >Continue reading</option>
           <option value='read'>Read</option>
           <option value='wantToRead'>Want to read</option>
           <option value='none'>None</option>
